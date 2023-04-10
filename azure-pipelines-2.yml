@@ -1,4 +1,12 @@
 # PHP as Linux Web App on Azure
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Free Trial(d54072a4-094d-4154-8d36-7cdac330e233)'
+    appType: 'webAppLinux'
+    WebAppName: 'php012'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'PHP|8.0'
 # Build, package and deploy your PHP project to Azure Linux Web App.
 # Add steps that run tests and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/php
