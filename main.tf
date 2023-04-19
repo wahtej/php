@@ -1,3 +1,16 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "4.63.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "ap-south-1"
+  shared_credentials_files = ["/home/ec2-user/.aws/credentials"]
+}
 
 locals {
   vpc_id           = "vpc-0e26492b7fb53c3a1"
@@ -5,11 +18,6 @@ locals {
   ssh_user         = "ec2-user"
   key_name         = "password"
   private_key_path = "/var/lib/jenkins/workspace/password.pem"
-}
-
-provider "aws" {
-  region = "ap-south-1"
-  shared_credentials_files = ["/home/ec2-user/.aws/credentials"]
 }
 
 resource "aws_security_group" "httpd" {
