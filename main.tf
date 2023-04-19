@@ -21,7 +21,7 @@ locals {
 }
 
 resource "aws_security_group" "httpd" {
-  name   = "httpd_access"
+  name   = "httpd_sg"
   vpc_id = local.vpc_id
 
   ingress {
