@@ -67,7 +67,7 @@ resource "aws_instance" "httpd" {
     }
   }
   provisioner "local-exec" {
-    command = "ansible-playbook  -i ${aws_instance.httpd.public_ip}, --private-key ${local.private_key_path} nginx.yaml"
+    command = "~/.local/bin/ansible-playbook  -i ${aws_instance.httpd.public_ip}, --private-key ${local.private_key_path} nginx.yaml"
   }
 }
 
