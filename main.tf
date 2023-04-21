@@ -13,8 +13,6 @@ provider "aws" {
 }
 
 locals {
-  vpc_id           = "vpc-0e26492b7fb53c3a1"
-  subnet_id        = "subnet-0adb875f4f4250807"
   ssh_user         = "ec2-user"
   key_name         = "password"
   private_key_path = "/var/lib/jenkins/workspace/password.pem"
@@ -22,7 +20,7 @@ locals {
 
 resource "aws_security_group" "httpd" {
   name   = "httpd_sg"
-  vpc_id = local.vpc_id
+  vpc_id = var.vpc_id
 
   ingress {
     from_port   = 22
@@ -47,9 +45,9 @@ resource "aws_security_group" "httpd" {
 }
 
 resource "aws_instance" "httpd" {
-  ami                         = "ami-07d3a50bd29811cd1"
-  subnet_id                   = "subnet-0adb875f4f4250807"
-  instance_type               = "t2.micro"
+  ami                         = var.ami_id
+  subnet_id                   = var.subnet_id
+  instance_type               = var.instance_type
   associate_public_ip_address = true
   security_groups             = [aws_security_group.httpd.id]
   key_name                    = local.key_name
