@@ -51,6 +51,10 @@ resource "aws_instance" "httpd" {
   associate_public_ip_address = true
   security_groups             = [aws_security_group.httpd.id]
   key_name                    = local.key_name
+  tags = {
+    Name = var.instance_name
+  }
+    
 
   provisioner "remote-exec" {
     inline = ["echo 'Wait until SSH is ready'"]
